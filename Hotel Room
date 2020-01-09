@@ -1,0 +1,52 @@
+class hotel:
+   
+    
+    def __init__(self):
+        self.availiblity = {'Monday':10, 'Tuesday':0, 'Wednesday':10, 'Thursday':12,'Friday':12, 'Saturday':18, 'Sunday':10}
+        self.Price = {'Monday':70, 'Tuesday':70, 'Wednesday':80, 'Thursday':80,'Friday':85, 'Saturday':85, 'Sunday':70}
+        
+        self.availiblity_DELUX = {'Monday':5, 'Tuesday':5, 'Wednesday':5, 'Thursday':5,'Friday':5, 'Saturday':5, 'Sunday':5}
+        self.Price_DELUX = {'Monday':170, 'Tuesday':170, 'Wednesday':180, 'Thursday':180,'Friday':285, 'Saturday':285, 'Sunday':170}
+        self.Total_Sales = 0
+        self.Total_Sales_D = 0
+    def __str__(self):
+        return f'The total number of room availible is {self.Number_Normal_Room} and it costs ${self.Cost_Normal_Room}'
+    
+#*********************************************Normal Booking****************************************************************
+    def Booking(self):
+        response = input("Press 1 for Normal or 2 for Delux")
+        if response == '1':
+            Day = input("Which day you want to book?")
+            x = list(self.availiblity.keys())
+            Number_of_Nights = int(input("how many nights?"))
+        
+            for i in range(0, len(x)):
+                if x[i] == Day:
+                    for i in range(i, i+Number_of_Nights):
+                        if self.availiblity[x[i]] > 0:
+                            print(f'The availible for {x[i]} $: {self.Price[x[i]]}')
+                            self.availiblity[x[i]] -= 1
+                            self.Total_Sales += self.Price[x[i]]
+                        else:
+                            print(f'No Rome for {x[i]}')
+               
+            return f'Your total cost is: ${self.Total_Sales}'
+#**********************************Delux booking******************************************************************************
+        else:      
+            print("Welcome to our Delux Service")
+            Day = input("Which day you want to book?")
+            Number_of_Nights = int(input("how many nights?"))
+            x = list(self.availiblity_DELUX.keys())
+            for i in range(0, len(x)):
+                if x[i] == Day:
+                    for i in range(i, i+Number_of_Nights):
+                        if self.availiblity_DELUX[x[i]] > 0:
+                            print(f'Room availible for {x[i]} $: {self.Price_DELUX[x[i]]}')
+                            self.availiblity_DELUX[x[i]] -= 1
+                            self.Total_Sales_D += self.Price_DELUX[x[i]]
+                        else:
+                            print(f'No Rome for {x[i]}')
+                  
+                    return f'The total cost is: {self.Total_Sales_D}'
+    
+       
